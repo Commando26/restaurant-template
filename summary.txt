@@ -1,0 +1,91 @@
+# Restaurant Template — Project Context for Claude Code
+
+## What This Is
+A reusable restaurant website template built as a side hustle product. The idea is to find small food businesses in Oakdale, MN (and surrounding areas) that don't have websites, and offer them a professional site with a CMS they can manage themselves. Each client gets their own domain, Sanity project, and Vercel deploy.
+
+## Tech Stack
+- **Next.js 14** (App Router, TypeScript) — SSR/SSG for SEO
+- **Sanity.io** (headless CMS) — restaurant owners log into Sanity Studio to edit their own content
+- **Tailwind CSS** — styling with CSS variable-based theming
+- **Vercel** — hosting and deploys
+- **lucide-react** — icons
+- **@portabletext/react** — rendering Sanity rich text (used on About page)
+
+## Project Structure
+```
+restaurant-template/
+├── sanity/
+│   ├── schemas/            # CMS content models
+│   │   ├── index.ts        # Schema registry
+│   │   ├── menuItem.ts     # Menu items (name, price, description, photo, dietary tags, featured flag)
+│   │   ├── menuCategory.ts # Menu sections (Appetizers, Mains, Drinks, etc.)
+│   │   ├── businessInfo.ts # Restaurant name, address, phone, email, socials, logo, hero image
+│   │   ├── hours.ts        # Operating hours per day + holiday/special closures
+│   │   ├── announcement.ts # Toggle-able banner ("Closed for holiday", "New menu!")
+│   │   ├── aboutSection.ts # Story (rich text), team photo, photo gallery
+│   │   └── siteSettings.ts # Color theme picker, SEO meta, favicon, OG image
+│   ├── lib/
+│   │   └── client.ts       # Sanity client config + image URL builder
+│   └── sanity.config.ts    # Sanity Studio config with custom sidebar structure
+├── src/
+│   ├── app/
+│   │   ├── layout.tsx      # Root layout — loads fonts (Playfair Display + Source Sans 3), sets data-theme attribute, wraps in Navbar + Footer
+│   │   ├── page.tsx        # Homepage — hero, featured menu items, hours, contact. Uses homepageQuery to fetch everything in one call
+│   │   ├── menu/page.tsx   # Full menu organized by category with dotted-line price layout
+│   │   ├── about/page.tsx  # Story with PortableText, team photo, photo gallery grid
+│   │   └── contact/page.tsx # Address, phone, hours, Google Maps embed, special closures
+│   ├── components/
+│   │   ├── sections/       # Page-level sections
+│   │   │   ├── Hero.tsx           # Full-width hero with background image or gradient fallback, CTA buttons
+│   │   │   ├── MenuSection.tsx    # Renders menu items in either "grid" (cards) or "list" layout
+│   │   │   ├── HoursDisplay.tsx   # Hours table with today's day highlighted (client component)
+│   │   │   ├── AnnouncementBanner.tsx  # Colored banner, toggleable from CMS
+│   │   │   └── ContactInfo.tsx    # Address, phone, email with icons + Google Maps directions link
+│   │   └── ui/             # Reusable primitives
+│   │       ├── Navbar.tsx   # Sticky nav with mobile hamburger menu (client component)
+│   │       ├── Footer.tsx   # 3-column footer with brand, quick links, contact + socials
+│   │       └── MenuItem.tsx # Dual-variant: "card" (image + details) for homepage grid, "list" (inline with dotted line to price) for menu page
+│   ├── lib/
+│   │   ├── sanity.queries.ts  # All GROQ queries. Key ones: homepageQuery (batched), fullMenuQuery (categories with nested items), businessInfoQuery, hoursQuery
+│   │   └── types.ts           # TypeScript interfaces for all CMS content types
+│   └── styles/
+│       └── globals.css     # Tailwind directives + 5 color theme presets (warm/cool/earth/bold/minimal) using CSS variables on [data-theme]
+├── tailwind.config.ts      # Extends colors and fonts with CSS variables
+├── next.config.js          # Allows images from cdn.sanity.io
+├── package.json
+├── tsconfig.json           # Path aliases: @/* -> ./src/*, @/sanity/* -> ./sanity/*
+└── .env.local              # NEXT_PUBLIC_SANITY_PROJECT_ID, NEXT_PUBLIC_SANITY_DATASET, NEXT_PUBLIC_GOOGLE_MAPS_KEY
+```
+
+## Theming System
+Colors are driven by CSS variables set via `[data-theme]` attribute on `<html>`. The theme value comes from Sanity (`siteSettings.colorTheme`). Available themes: warm, cool, earth, bold, minimal. Tailwind classes reference these variables (e.g. `bg-primary`, `text-text-muted`, `bg-surface-alt`).
+
+Fonts: `font-display` = Playfair Display (headings), `font-body` = Source Sans 3 (body text). Loaded via next/font/google.
+
+## Key Patterns
+- **Data fetching**: All pages use server components with `client.fetch(query)` at the top level. `revalidate = 60` on each page for ISR (content updates within 60s).
+- **Singletons**: businessInfo, operatingHours, announcement, siteSettings, aboutSection are all singleton documents in Sanity (one per restaurant). The Studio sidebar is configured to open them directly instead of showing a list.
+- **Menu structure**: menuCategory has many menuItems (via reference). fullMenuQuery uses a GROQ subquery to nest items under their category.
+- **Image handling**: All Sanity images go through `urlFor()` from `@sanity/image-url` with width/quality params. Next.js Image component with `fill` + `object-cover` for responsive images.
+
+## Current Status
+- All files are created and the project scaffolding is complete
+- npm install works fine
+- The Sanity project needs to be created via sanity.io/manage (CLI had an ESM bug on Windows/Node)
+- Once project ID is in .env.local and CORS is configured for localhost:3000, `npm run dev` will work
+- Pages will show empty/fallback content until menu items and business info are added through Sanity Studio
+- No online ordering — intentionally kept simple (menu display, hours, contact, about)
+
+## What Needs UI Work
+The template is functional but could use polish on:
+- Visual design refinement (spacing, typography hierarchy, hover states)
+- Mobile responsiveness fine-tuning
+- Menu page layout improvements
+- Hero section visual impact
+- Overall aesthetic to make it look premium enough to sell to restaurant owners
+- Any animations or transitions for polish
+- Dark mode support (optional)
+- Loading/empty states when CMS has no data yet
+
+## Business Context
+Target clients are small food businesses in Oakdale, MN without websites. Pricing model: $800-1500 setup + $50-75/month recurring. Per-client hosting cost is ~$1/month. Top prospects identified: La Autentica (Hispanic grocery), Bobalicious (boba café), Oak Smoke, Detailed Cleaning Services, Jokky Catering (Nigerian food).
