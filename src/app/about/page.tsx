@@ -1,4 +1,4 @@
-import { client } from '@/sanity/lib/client';
+import { sanityFetch } from '@/sanity/lib/client';
 import { aboutQuery } from '@/lib/sanity.queries';
 import { PortableText } from '@portabletext/react';
 import Image from 'next/image';
@@ -9,7 +9,7 @@ export const revalidate = 60;
 export const metadata = { title: 'About Us' };
 
 export default async function AboutPage() {
-  const about = await client.fetch(aboutQuery);
+  const about = await sanityFetch(aboutQuery) as any;
 
   return (
     <div className="bg-surface min-h-screen">

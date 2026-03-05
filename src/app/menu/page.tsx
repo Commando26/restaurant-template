@@ -1,4 +1,4 @@
-import { client } from '@/sanity/lib/client';
+import { sanityFetch } from '@/sanity/lib/client';
 import { fullMenuQuery, orderingLinksQuery } from '@/lib/sanity.queries';
 import MenuSection from '@/components/sections/MenuSection';
 import CategoryNav from '@/components/sections/CategoryNav';
@@ -13,8 +13,8 @@ export const metadata = {
 
 export default async function MenuPage() {
   const [categories, ordering] = await Promise.all([
-    client.fetch(fullMenuQuery),
-    client.fetch(orderingLinksQuery),
+    sanityFetch(fullMenuQuery),
+    sanityFetch(orderingLinksQuery),
   ]);
   const hasMenu = categories && categories.length > 0;
 

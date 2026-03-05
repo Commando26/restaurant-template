@@ -64,7 +64,8 @@ export const orderingLinksQuery = groq`
 // Site settings
 export const siteSettingsQuery = groq`
   *[_type == "siteSettings"][0] {
-    _id, colorTheme, favicon, metaTitle, metaDescription, ogImage
+    _id, colorTheme, favicon, metaTitle, metaDescription, ogImage, showHoursInHero,
+    customColors { primary, primaryDark, accent, surface, surfaceAlt, textMain, textMuted, border }
   }
 `;
 

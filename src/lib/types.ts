@@ -97,9 +97,26 @@ export interface OrderingLinks {
   toastTab?: string;
 }
 
+export type ColorTheme =
+  | 'warm' | 'cool' | 'earth' | 'bold' | 'minimal' | 'dark'
+  | 'rustic' | 'sakura' | 'ocean' | 'spice' | 'bistro' | 'smoke'
+  | 'fiesta' | 'lantern' | 'olive' | 'craft' | 'tropical' | 'cafe' | 'rose' | 'noir';
+
+export interface CustomColors {
+  primary?: string;
+  primaryDark?: string;
+  accent?: string;
+  surface?: string;
+  surfaceAlt?: string;
+  textMain?: string;
+  textMuted?: string;
+  border?: string;
+}
+
 export interface SiteSettings {
   _id: string;
-  colorTheme: 'warm' | 'cool' | 'earth' | 'bold' | 'minimal' | 'dark' | 'rustic' | 'sakura' | 'ocean' | 'spice' | 'bistro' | 'smoke';
+  colorTheme: ColorTheme;
+  customColors?: CustomColors;
   favicon?: SanityImage;
   metaTitle?: string;
   metaDescription?: string;

@@ -1,4 +1,5 @@
 import type { OrderingLinks as OrderingLinksType } from '@/lib/types';
+import { isSafeUrl } from '@/lib/utils';
 
 interface Props {
   ordering: OrderingLinksType;
@@ -53,7 +54,10 @@ const platforms = [
 ];
 
 export default function OrderingLinks({ ordering }: Props) {
-  const activeLinks = platforms.filter((p) => ordering[p.key]);
+  const activeLinks = platforms.filter((p) => {
+    const url = ordering[p.key];
+    return url && isSafeUrl(url);
+  });
   if (activeLinks.length === 0) return null;
 
   return (
@@ -70,7 +74,7 @@ export default function OrderingLinks({ ordering }: Props) {
           {activeLinks.map((platform) => (
             <a
               key={platform.key}
-              href={ordering[platform.key]!}
+              href={ordering[platform.key] as string}
               target="_blank"
               rel="noopener noreferrer"
               className={`inline-flex items-center gap-2.5 px-5 py-3 rounded-full text-white font-body

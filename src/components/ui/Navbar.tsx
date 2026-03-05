@@ -6,10 +6,11 @@ import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { Menu, X, Phone } from 'lucide-react';
 import { urlFor } from '@/sanity/lib/client';
+import type { SanityImage } from '@/lib/types';
 
 interface NavbarProps {
   restaurantName: string;
-  logo?: any;
+  logo?: SanityImage;
   phone?: string;
 }
 

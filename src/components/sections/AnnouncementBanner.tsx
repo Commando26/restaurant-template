@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { X, ExternalLink } from 'lucide-react';
+import { isSafeUrl } from '@/lib/utils';
 
 interface AnnouncementBannerProps {
   announcement: {
@@ -23,22 +24,24 @@ export default function AnnouncementBanner({ announcement }: AnnouncementBannerP
   if (dismissed) return null;
 
   const colors = colorMap[announcement.backgroundColor || 'blue'] ?? colorMap.blue;
+  // Only render as a link if the URL is safe (blocks javascript:, data:, etc.)
+  const safeLink = announcement.link && isSafeUrl(announcement.link) ? announcement.link : null;
 
   const inner = (
     <span className="font-body text-sm md:text-base font-medium flex items-center gap-2 justify-center">
       {announcement.message}
-      {announcement.link && <ExternalLink size={14} className="shrink-0 opacity-75" />}
+      {safeLink && <ExternalLink size={14} className="shrink-0 opacity-75" />}
     </span>
   );
 
   return (
     <div className={`${colors.bar} py-2.5 px-4 flex items-center justify-between gap-4 animate-fade-in`}>
       <div className="flex-1 text-center">
-        {announcement.link ? (
+        {safeLink ? (
           <a
-            href={announcement.link}
+            href={safeLink}
             target="_blank"
-            rel="noopener"
+            rel="noopener noreferrer"
             className="hover:underline underline-offset-2"
           >
             {inner}

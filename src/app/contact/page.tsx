@@ -1,16 +1,17 @@
-import { client } from '@/sanity/lib/client';
+import { sanityFetch } from '@/sanity/lib/client';
 import { businessInfoQuery, hoursQuery } from '@/lib/sanity.queries';
 import HoursDisplay from '@/components/sections/HoursDisplay';
 import ContactInfo from '@/components/sections/ContactInfo';
 import { AlertCircle } from 'lucide-react';
+import type { SpecialClosure } from '@/lib/types';
 
 export const revalidate = 60;
 export const metadata = { title: 'Contact' };
 
 export default async function ContactPage() {
   const [business, hours] = await Promise.all([
-    client.fetch(businessInfoQuery),
-    client.fetch(hoursQuery),
+    sanityFetch(businessInfoQuery),
+    sanityFetch(hoursQuery),
   ]);
 
   const address = business?.address;
@@ -62,7 +63,7 @@ export default async function ContactPage() {
               <h3 className="font-display text-xl text-text-main">Upcoming Special Hours</h3>
             </div>
             <div className="divide-y divide-border">
-              {hours.specialClosures.map((closure: any, idx: number) => (
+              {hours.specialClosures.map((closure: SpecialClosure, idx: number) => (
                 <div key={idx} className="flex justify-between items-center font-body py-3 text-sm gap-4">
                   <div>
                     <span className="text-text-main font-semibold">{closure.reason}</span>

@@ -1,4 +1,4 @@
-import { client } from '@/sanity/lib/client';
+import { sanityFetch } from '@/sanity/lib/client';
 import { homepageQuery } from '@/lib/sanity.queries';
 import Hero from '@/components/sections/Hero';
 import AnnouncementBanner from '@/components/sections/AnnouncementBanner';
@@ -10,8 +10,8 @@ import OrderingLinks from '@/components/sections/OrderingLinks';
 export const revalidate = 60;
 
 export default async function HomePage() {
-  const data = await client.fetch(homepageQuery);
-  const { business, hours, featured, announcement, ordering, settings } = data;
+  const data = await sanityFetch(homepageQuery);
+  const { business, hours, featured, announcement, ordering, settings } = (data as any) ?? {};
 
   return (
     <>

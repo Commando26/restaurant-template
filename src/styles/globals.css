@@ -152,6 +152,102 @@
   --color-border: #382e24;
 }
 
+/* 🌮 Fiesta — burnt sienna & avocado (Mexican, Tex-Mex, Latin) */
+[data-theme='fiesta'] {
+  --color-primary: #bf4a1e;
+  --color-primary-dark: #9e3a14;
+  --color-accent: #4a7c3f;
+  --color-surface: #fffcf0;
+  --color-surface-alt: #fdf4dc;
+  --color-text-main: #1e0e00;
+  --color-text-muted: #7a5a30;
+  --color-border: #f0d090;
+}
+
+/* 🏮 Lantern — vermilion & gold (Chinese, Dim Sum, Cantonese) */
+[data-theme='lantern'] {
+  --color-primary: #c41a1a;
+  --color-primary-dark: #a01010;
+  --color-accent: #c8940a;
+  --color-surface: #fffaf0;
+  --color-surface-alt: #fff2d8;
+  --color-text-main: #180800;
+  --color-text-muted: #7a4a28;
+  --color-border: #f0d0a0;
+}
+
+/* 🫒 Olive — sage green & harvest gold (Greek, Mediterranean, Farm-to-table) */
+[data-theme='olive'] {
+  --color-primary: #4d7c59;
+  --color-primary-dark: #3a6044;
+  --color-accent: #c49436;
+  --color-surface: #fafaf4;
+  --color-surface-alt: #f0f0e4;
+  --color-text-main: #1a1c12;
+  --color-text-muted: #6a6a48;
+  --color-border: #d8d8b8;
+}
+
+/* 🍺 Craft — dark amber & malt (Gastropub, Brewery, American) */
+[data-theme='craft'] {
+  --color-primary: #8b5e2a;
+  --color-primary-dark: #6a4618;
+  --color-accent: #c47e18;
+  --color-surface: #fdf8ec;
+  --color-surface-alt: #f5ecd8;
+  --color-text-main: #1a1208;
+  --color-text-muted: #7a6040;
+  --color-border: #e0c898;
+}
+
+/* 🌺 Tropical — teal & mango (Caribbean, Island, Hawaiian Fusion) */
+[data-theme='tropical'] {
+  --color-primary: #0e7f6c;
+  --color-primary-dark: #0a6458;
+  --color-accent: #f0841a;
+  --color-surface: #f5fffb;
+  --color-surface-alt: #e6f8f4;
+  --color-text-main: #041a16;
+  --color-text-muted: #2e6860;
+  --color-border: #a8e0d4;
+}
+
+/* ☕ Cafe — espresso & latte (Coffee Shop, Bakery, Brunch) */
+[data-theme='cafe'] {
+  --color-primary: #5c3d1e;
+  --color-primary-dark: #3e2810;
+  --color-accent: #c49a64;
+  --color-surface: #fdfaf4;
+  --color-surface-alt: #f5edd8;
+  --color-text-main: #1e1006;
+  --color-text-muted: #7a6050;
+  --color-border: #e4d0b4;
+}
+
+/* 🌹 Rose — dusty rose & soft plum (Brunch Spot, Patisserie, Modern European) */
+[data-theme='rose'] {
+  --color-primary: #be5070;
+  --color-primary-dark: #9e3c58;
+  --color-accent: #7060a0;
+  --color-surface: #fff8f9;
+  --color-surface-alt: #faecf0;
+  --color-text-main: #1c0c12;
+  --color-text-muted: #7a5060;
+  --color-border: #eac8d4;
+}
+
+/* 🎭 Noir — jet black & crimson (Cocktail Bar, Speakeasy, Modern Fine Dining) */
+[data-theme='noir'] {
+  --color-primary: #c02035;
+  --color-primary-dark: #9e1428;
+  --color-accent: #c0a870;
+  --color-surface: #0c0a0e;
+  --color-surface-alt: #18141e;
+  --color-text-main: #f0e8f0;
+  --color-text-muted: #8a7890;
+  --color-border: #2c2438;
+}
+
 /* ============================================
    Base Styles
    ============================================ */

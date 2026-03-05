@@ -14,7 +14,8 @@ A production-ready restaurant website template with a headless CMS so owners can
 
 ## Features
 
-- **12 color themes** — General: Warm, Cool, Earth, Bold, Minimal, Dark. Cuisine-specific: Rustic (Italian), Sakura (Japanese), Ocean (Seafood), Spice (Indian/Thai), Bistro (Fine Dining), Smoke (BBQ) — switchable from Sanity Studio
+- **20 color themes** — General: Warm, Cool, Earth, Bold, Minimal, Dark. Cuisine-specific: Rustic (Italian), Sakura (Japanese), Ocean (Seafood), Spice (Indian/Thai), Bistro (Fine Dining), Smoke (BBQ), Fiesta (Mexican), Lantern (Chinese), Olive (Greek/Mediterranean), Craft (Gastropub), Tropical (Caribbean), Cafe (Bakery/Brunch), Rose (Patisserie), Noir (Bar/Speakeasy) — switchable from Sanity Studio
+- **Custom color override** — Any individual CSS variable (primary, accent, background, text, border) can be overridden with a hex code in Sanity Studio on top of the chosen theme
 - **Full menu system** — Categories, items, photos, dietary tags, sort order
 - **NEW + SEASONAL badges** — Flag items in Sanity, badges render automatically
 - **Featured items** — Mark items as Chef's Pick, shown on homepage grid
@@ -36,7 +37,7 @@ A production-ready restaurant website template with a headless CMS so owners can
 - **Online Ordering** — Paste in DoorDash/UberEats/Grubhub/direct URLs
 - **About** — Story (rich text), team photo + caption, photo gallery
 - **Business Info** — Name, tagline, address, phone, email, social links, hero image, logo
-- **Site Settings** — Color theme, favicon, SEO title/description, social share image, hero hours badge toggle
+- **Site Settings** — Color theme (20 presets), custom color overrides, favicon, SEO title/description, social share image, hero hours badge toggle
 
 ## Project Structure
 
